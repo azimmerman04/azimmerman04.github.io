@@ -67,7 +67,7 @@ angular.module('mastersApp', [])
         var score = scores[j];
         for (var i = 0; i < roundScores.length; i++){
           var scoreInRound = roundScores[i];
-          if (score == scoreInRound && (players.indexOf(team.players[i]) < 0)){
+          if (score == scoreInRound && (players.indexOf(team.players[i] + " " + score.toString()) < 0)){
             players.push(team.players[i] + " " + score.toString());
             break;
           }
