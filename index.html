@@ -2,10 +2,12 @@
 <html ng-app="mastersApp">
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="moment.js"></script>
     <script src="masters.js"></script>
   </head>
   <body>
     <div ng-controller="MastersController as mastersController">
+      <h5>Updated {{mastersController.updateTime}}</h5>
       <h5>Tournament Low Foursome</h5>
       <ul>
         <li ng-repeat="lowMan in mastersController.pools.LowTournamentFoursome">{{lowMan.team}} {{lowMan.players}} {{lowMan.score}}</li>
