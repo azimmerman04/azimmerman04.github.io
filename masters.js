@@ -60,6 +60,22 @@ angular.module('mastersApp', [])
       return player;
     }
 
+    function getFoursomeForScores(team, round, scores){
+      var players = [];
+      var roundScores = team.scoresByRound[round];
+      for (var j = 0; j < scores.length; j++){
+        var score = scores[j];
+        for (var i = 0; i < roundScores.length; i++){
+          var scoreInRound = roundScores[i];
+          if (score == scoreInRound && (players.indexOf(team.players[i]) < 0)){
+            players.push(team.players[i] + " " + score.toString());
+            break;
+          }
+        }
+      }
+      return players;
+    }
+
       $http.get("https://www.masters.com/en_US/scores/feeds/scores.json")
       .then(function(response){
         var mastersData = response.data.data;
@@ -95,7 +111,8 @@ angular.module('mastersApp', [])
             var scoresForRound = team.scoresByRound[j].slice();
             var scoresForRoundSorted = scoresForRound.sort(function(a,b){return a - b});
             masters.pools["round" + (j+1) + "LowMan"].push({team: team.owner, score: scoresForRoundSorted[0], player: findPlayerWithScore(team, j, scoresForRoundSorted[0])});
-            masters.pools["round" + (j+1) + "LowFoursome"].push({team: team.owner, score: scoresForRoundSorted[0] + scoresForRoundSorted[1] + scoresForRoundSorted[2] + scoresForRoundSorted[3]});
+            var foursomePlayers = getFoursomeForScores(team, j, [scoresForRoundSorted[0],scoresForRoundSorted[1],scoresForRoundSorted[2],scoresForRoundSorted[3]]);
+            masters.pools["round" + (j+1) + "LowFoursome"].push({team: team.owner, score: scoresForRoundSorted[0] + scoresForRoundSorted[1] + scoresForRoundSorted[2] + scoresForRoundSorted[3], players: foursomePlayers});
           }
           var playerTotalsSorted = team.playerTotals.sort(function(a,b){return a - b});
           masters.pools.LowTournamentFoursome.push({team: team.owner, score: playerTotalsSorted[0] + playerTotalsSorted[1] + playerTotalsSorted[2] + playerTotalsSorted[3]});
