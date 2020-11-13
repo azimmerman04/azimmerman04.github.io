@@ -47,6 +47,19 @@ angular.module('mastersApp', [])
       return score;
     }
 
+    function findPlayerWithScore(team, round, score){
+      var player = "";
+      var roundScores = team.scoresByRound[round];
+      for (var i = 0; i < roundScores.length; i++){
+        var scoreInRound = roundScores[i];
+        if (score == scoreInRound){
+          player = team.players[i];
+          break;
+        }
+      }
+      return player;
+    }
+
       $http.get("https://www.masters.com/en_US/scores/feeds/scores.json")
       .then(function(response){
         var mastersData = response.data.data;
@@ -65,9 +78,7 @@ angular.module('mastersApp', [])
                   for (var l = 0; l < 4; l++){
                     var roundScore = scores[l];
                     playerTotal = playerTotal + roundScore;
-                    if (roundScore != 0){
-                      team.scoresByRound[l].push(roundScore);
-                    }
+                    team.scoresByRound[l].push(roundScore);
                   }
                   team.playerTotals.push(playerTotal);
                 break;
@@ -83,7 +94,7 @@ angular.module('mastersApp', [])
           for (var j = 0; j < 4; j++){
             var scoresForRound = team.scoresByRound[j].slice();
             var scoresForRoundSorted = scoresForRound.sort(function(a,b){return a - b});
-            masters.pools["round" + (j+1) + "LowMan"].push({team: team.owner, score: scoresForRoundSorted[0]});
+            masters.pools["round" + (j+1) + "LowMan"].push({team: team.owner, score: scoresForRoundSorted[0], player: findPlayerWithScore(team, j, scoresForRoundSorted[0])});
             masters.pools["round" + (j+1) + "LowFoursome"].push({team: team.owner, score: scoresForRoundSorted[0] + scoresForRoundSorted[1] + scoresForRoundSorted[2] + scoresForRoundSorted[3]});
           }
           var playerTotalsSorted = team.playerTotals.sort(function(a,b){return a - b});
@@ -94,7 +105,7 @@ angular.module('mastersApp', [])
           masters.pools["round" + (i+1) + "LowMan"].sort(function(a,b){return a.score - b.score});
           masters.pools["round" + (i+1) + "LowFoursome"].sort(function(a,b){return a.score - b.score});
         }
-        
+
         masters.pools.LowTournamentFoursome.sort(function(a,b){return a.score - b.score});
       });
     }
