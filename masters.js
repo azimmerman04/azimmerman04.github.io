@@ -94,6 +94,7 @@ angular.module('mastersApp', [])
           masters.pools["round" + (i+1) + "LowMan"].sort(function(a,b){return a.score - b.score});
           masters.pools["round" + (i+1) + "LowFoursome"].sort(function(a,b){return a.score - b.score});
         }
+        
         masters.pools.LowTournamentFoursome.sort(function(a,b){return a.score - b.score});
       });
     }
