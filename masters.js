@@ -96,7 +96,7 @@ angular.module('mastersApp', [])
                     playerTotal = playerTotal + roundScore;
                     team.scoresByRound[l].push(roundScore);
                   }
-                  team.playerTotals.push(playerTotal);
+                  team.playerTotals.push({player: playerName, score: playerTotal});
                 break;
               } else if (k === mastersData.player.length){
                 console.log("Player not found: " + playerName);
@@ -114,8 +114,9 @@ angular.module('mastersApp', [])
             var foursomePlayers = getFoursomeForScores(team, j, [scoresForRoundSorted[0],scoresForRoundSorted[1],scoresForRoundSorted[2],scoresForRoundSorted[3]]);
             masters.pools["round" + (j+1) + "LowFoursome"].push({team: team.owner, score: scoresForRoundSorted[0] + scoresForRoundSorted[1] + scoresForRoundSorted[2] + scoresForRoundSorted[3], players: foursomePlayers});
           }
-          var playerTotalsSorted = team.playerTotals.sort(function(a,b){return a - b});
-          masters.pools.LowTournamentFoursome.push({team: team.owner, score: playerTotalsSorted[0] + playerTotalsSorted[1] + playerTotalsSorted[2] + playerTotalsSorted[3]});
+          var playerTotalsSorted = team.playerTotals.sort(function(a,b){return a.score - b.score});
+          var playersTotalPlayers = [playerTotalsSorted[0].player + " " + playerTotalsSorted[0].score.toString(),playerTotalsSorted[1].player + " " + playerTotalsSorted[1].score.toString(), playerTotalsSorted[2].player + " " + playerTotalsSorted[2].score.toString(), playerTotalsSorted[3].player + " " + playerTotalsSorted[3].score.toString()];
+          masters.pools.LowTournamentFoursome.push({team: team.owner, score: playerTotalsSorted[0].score + playerTotalsSorted[1].score + playerTotalsSorted[2].score + playerTotalsSorted[3].score,players: playersTotalPlayers});
         }
 
         for (var i = 0; i < 4; i++){
