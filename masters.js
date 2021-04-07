@@ -6,22 +6,22 @@ angular.module('mastersApp', [])
       masters.updateTime = "";
       masters.teams = [
         { owner: "Adam",
-          players: ["Bryson DeChambeau","Xander Schauffele","Patrick Reed","Jason Day","Matthew Wolff","Justin Rose","Cameron Champ","Abraham Ancer"],
+          players: ["Rory McIlroy","Jon Rahm","Victor Hovland","Scottie Scheffler","Tommy Fleetwood","Jason Day","Kevin Kisner","Max Homa"],
           scoresByRound: [[],[],[],[]],
           playerTotals: []
         },
         { owner: "Danny",
-          players: ["Jon Rahm","Rory McIlroy","Bubba Watson","Patrick Cantlay","Tiger Woods","Jordan Spieth","Tyrrell Hatton","Matt Kuchar"],
+          players: ["Justin Thomas","Jordan Spieth","Patrick Reed","Lee Westwood","Brooks Koepka","Hideki Matsuyama","Corey Conners","Marc Leishman"],
           scoresByRound: [[],[],[],[]],
           playerTotals: []
         },
         { owner: "Drew",
-          players: ["Dustin Johnson","Brooks Koepka","Hideki Matsuyama","Adam Scott","Rickie Fowler","Kevin Kisner","Paul Casey","Shane Lowry"],
+          players: ["Bryson DeChambeau","Patrick Cantlay","Daniel Berger","Tony Finau","Louis Oosthuizen","Cameron Smith","Sungjae Im","Bubba Watson"],
           scoresByRound: [[],[],[],[]],
           playerTotals: []
         },
         { owner: "Ryan",
-          players: ["Justin Thomas","Webb Simpson","Collin Morikawa","Tony Finau","Tommy Fleetwood","Louis Oosthuizen","Sungjae Im","Matthew Fitzpatrick"],
+          players: ["Dustin Johnson","Collin Morikawa","Xander Schauffele","Paul Casey","Webb Simpson","Matthew Fitzpatrick","Abraham Ancer","Sergio Garcia"],
           scoresByRound: [[],[],[],[]],
           playerTotals: []
         }
@@ -90,7 +90,7 @@ angular.module('mastersApp', [])
               var playerName = team.players[j];
               for (var k = 0; k < mastersData.player.length; k++){
                 var playerData = mastersData.player[k];
-                if ((playerData.first_name + " " + playerData.last_name) === playerName){
+                if ((playerData.first_name + " " + playerData.last_name).toLowerCase() === playerName.toLowerCase()){
                   var scores = [calculateScore(mastersData.pars.round1,playerData.round1.scores),
                     calculateScore(mastersData.pars.round1,playerData.round2.scores),
                     calculateScore(mastersData.pars.round1,playerData.round3.scores),
