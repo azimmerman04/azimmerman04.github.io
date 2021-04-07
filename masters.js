@@ -80,7 +80,7 @@ angular.module('mastersApp', [])
     }
 
     masters.calculate = function() {
-        $http.get("https://www.masters.com/en_US/scores/feeds/scores.json")
+        $http.get("https://www.masters.com/en_US/scores/feeds/2021/scores.json")
         .then(function(response){
           masters.init();
           var mastersData = response.data.data;
