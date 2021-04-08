@@ -6,7 +6,7 @@ angular.module('mastersApp', [])
       masters.updateTime = "";
       masters.teams = [
         { owner: "Adam",
-          players: ["Rory McIlroy","Jon Rahm","Victor Hovland","Scottie Scheffler","Tommy Fleetwood","Jason Day","Kevin Kisner","Max Homa"],
+          players: ["Rory McIlroy","Jon Rahm","Viktor Hovland","Scottie Scheffler","Tommy Fleetwood","Jason Day","Kevin Kisner","Max Homa"],
           scoresByRound: [[],[],[],[]],
           playerTotals: []
         },
