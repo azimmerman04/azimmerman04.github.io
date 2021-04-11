@@ -40,7 +40,10 @@ angular.module('mastersApp', [])
       };
     };
 
-    function calculateScore(pars,roundData) {
+    function calculateScore(pars,roundData, playerStatus, roundNumber) {
+    	if ((playerStatus === "C") && (roundNumber === 3 || roundNumber === 4)){
+    		return 1000;
+    	}
       var score = 0;
       for (var i = 0; i < 18; i++){
         if (roundData[i] != null){
@@ -91,10 +94,10 @@ angular.module('mastersApp', [])
               for (var k = 0; k < mastersData.player.length; k++){
                 var playerData = mastersData.player[k];
                 if ((playerData.first_name + " " + playerData.last_name).toLowerCase() === playerName.toLowerCase()){
-                  var scores = [calculateScore(mastersData.pars.round1,playerData.round1.scores),
-                    calculateScore(mastersData.pars.round1,playerData.round2.scores),
-                    calculateScore(mastersData.pars.round1,playerData.round3.scores),
-                    calculateScore(mastersData.pars.round1,playerData.round4.scores)];
+                  var scores = [calculateScore(mastersData.pars.round1,playerData.round1.scores, playerData.status,1),
+                    calculateScore(mastersData.pars.round1,playerData.round2.scores, playerData.status,2),
+                    calculateScore(mastersData.pars.round1,playerData.round3.scores, playerData.status,3),
+                    calculateScore(mastersData.pars.round1,playerData.round4.scores, playerData.status,4)];
                     var playerTotal = 0;
                     for (var l = 0; l < 4; l++){
                       var roundScore = scores[l];
