@@ -5,23 +5,33 @@ angular.module('mastersApp', [])
     masters.init = function(){
       masters.updateTime = "";
       masters.teams = [
+        { owner: "Jacob",
+          players: ["Jon Rahm","Patrick Cantlay","Will Zalatoris","Joaquin Niemann","Daniel Berger","Tyrrell Hatton","Patrick Reed","Thomas Pieters"],
+          scoresByRound: [[],[],[],[]],
+          playerTotals: []
+        },
+        { owner: "Gary",
+          players: ["Cameron Smith","Viktor Hovland","Louis Oosthuizen","Marc Leishman","Matthew Fitzpatrick","Paul Casey","Max Homa","Gary Woodland"],
+          scoresByRound: [[],[],[],[]],
+          playerTotals: []
+        },
+        { owner: "Eric",
+          players: ["Rory McIlroy","Jordan Spieth","Tiger Woods","Si Woo Kim","Sergio Garcia","Bubba Watson","Talor Gooch","Luke List"],
+          scoresByRound: [[],[],[],[]],
+          playerTotals: []
+        },
         { owner: "Adam",
-          players: ["Rory McIlroy","Jon Rahm","Viktor Hovland","Scottie Scheffler","Tommy Fleetwood","Jason Day","Kevin Kisner","Max Homa"],
+          players: ["Dustin Johnson","Xander Schauffele","Shane Lowry","Bryson DeChambeau","Sungjae Im","Corey Conners","Jason Kokrak","Harold Varner III"],
           scoresByRound: [[],[],[],[]],
           playerTotals: []
         },
-        { owner: "Danny",
-          players: ["Justin Thomas","Jordan Spieth","Patrick Reed","Lee Westwood","Brooks Koepka","Hideki Matsuyama","Corey Conners","Marc Leishman"],
-          scoresByRound: [[],[],[],[]],
-          playerTotals: []
-        },
-        { owner: "Drew",
-          players: ["Bryson DeChambeau","Patrick Cantlay","Daniel Berger","Tony Finau","Louis Oosthuizen","Cameron Smith","Sungjae Im","Bubba Watson"],
+        { owner: "Brian",
+          players: ["Collin Morikawa","Brooks Koepka","Sam Burns","Billy Horschel","Abraham Ancer","Russell Henley","Kevin Kisner","Matthew Wolff"],
           scoresByRound: [[],[],[],[]],
           playerTotals: []
         },
         { owner: "Ryan",
-          players: ["Dustin Johnson","Collin Morikawa","Xander Schauffele","Paul Casey","Webb Simpson","Matthew Fitzpatrick","Abraham Ancer","Sergio Garcia"],
+          players: ["Scottie Scheffler","Justin Thomas","Tommy Fleetwood","Tony Finau","Adam Scott","Justin Rose","Webb Simpson","Tom Hoge"],
           scoresByRound: [[],[],[],[]],
           playerTotals: []
         }
@@ -83,7 +93,7 @@ angular.module('mastersApp', [])
     }
 
     masters.calculate = function() {
-        $http.get("https://www.masters.com/en_US/scores/feeds/2021/scores.json")
+        $http.get("https://www.masters.com/en_US/scores/feeds/2022/scores.json")
         .then(function(response){
           masters.init();
           var mastersData = response.data.data;
