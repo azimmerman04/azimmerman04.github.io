@@ -11,7 +11,7 @@ angular.module('mastersApp', [])
           playerTotals: []
         },
         { owner: "Gary",
-          players: ["Cameron Smith","Viktor Hovland","Louis Oosthuizen","Marc Leishman","Matthew Fitzpatrick","Max Homa","Gary Woodland"],
+          players: ["Cameron Smith","Viktor Hovland","Marc Leishman","Matthew Fitzpatrick","Max Homa","Gary Woodland"],
           scoresByRound: [[],[],[],[]],
           playerTotals: []
         },
