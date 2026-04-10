@@ -4,13 +4,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
     <script src="moment.js"></script>
     <script src="masters.js"></script>
+    <style type="text/css">
+      .cut-miss {
+        color: red;
+      }
+    </style>
   </head>
   <body>
     <div ng-controller="MastersController as mastersController">
       <h3>Updated {{mastersController.updateTime}}</h3>
       <h3>Tournament Low Foursome</h3>
       <ul>
-        <li ng-repeat="lowMan in mastersController.pools.LowTournamentFoursome">{{lowMan.team}} {{lowMan.players}} {{lowMan.score}}</li>
+        <li ng-repeat="lowMan in mastersController.pools.LowTournamentFoursome" ng-class="{'cut-miss': lowMan.cutLine}">{{lowMan.team}} {{lowMan.players}} {{lowMan.score}}</li>
       </ul>
       <br>
       <h3>Round 1 Low Individual</h3>

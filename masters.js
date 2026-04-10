@@ -3,6 +3,7 @@ angular.module('mastersApp', [])
     var masters = this;
 
     masters.init = function(){
+	  masters.projectedCut = 3;
       masters.updateTime = "";
       masters.teams = [
         { owner: "Adam",
@@ -208,7 +209,11 @@ angular.module('mastersApp', [])
             }
             var playerTotalsSorted = team.playerTotals.sort(function(a,b){return a.score - b.score});
             var playersTotalPlayers = [playerTotalsSorted[0].player + " " + playerTotalsSorted[0].score.toString(),playerTotalsSorted[1].player + " " + playerTotalsSorted[1].score.toString(), playerTotalsSorted[2].player + " " + playerTotalsSorted[2].score.toString(), playerTotalsSorted[3].player + " " + playerTotalsSorted[3].score.toString()];
-            masters.pools.LowTournamentFoursome.push({team: team.owner, score: playerTotalsSorted[0].score + playerTotalsSorted[1].score + playerTotalsSorted[2].score + playerTotalsSorted[3].score,players: playersTotalPlayers});
+            var cutLine = false;
+            if (playerTotalsSorted[3].score > masters.projectedCut){
+            	cutLine = true;
+            }
+            masters.pools.LowTournamentFoursome.push({team: team.owner, score: playerTotalsSorted[0].score + playerTotalsSorted[1].score + playerTotalsSorted[2].score + playerTotalsSorted[3].score,players: playersTotalPlayers, cutLine: cutLine});
           }
 
           for (var i = 0; i < 4; i++){
