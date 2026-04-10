@@ -3,7 +3,7 @@ angular.module('mastersApp', [])
     var masters = this;
 
     masters.init = function(){
-	  masters.projectedCut = 3;
+	  masters.projectedCut = 4;
       masters.updateTime = "";
       masters.teams = [
         { owner: "Adam",
